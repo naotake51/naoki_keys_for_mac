@@ -9,7 +9,7 @@ class AppKeymap(base.AppKeymap):
         self.cursor_mode = self.MOVING_TEXT_MODE
         #send("Esc")
         print("init")
-        send("A")
+        send("Esc")
 
     # 新規作成、削除
     # def n(self):
@@ -129,7 +129,7 @@ class AppKeymap(base.AppKeymap):
 class SubAppKeymap(base.SubAppKeymap):
     def init(self):
         # send("Esc")
-        send("B")
+        send("Esc")
 
     # 新規作成、削除
     def n(self):
