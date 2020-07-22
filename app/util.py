@@ -122,39 +122,39 @@ char_to_vk = {
     "Option": 0x3A
 }
 
-def send(key, num = 1):
-    print("send " + key)
-    vk_command = char_to_vk["Command"]
-    # vk_alt = char_to_vk["Alt"]
-    vk_shift = char_to_vk["Shift"]
-    vk_ctrl = char_to_vk["Ctrl"]
+vk_command = char_to_vk["Command"] # #
+vk_ctrl = char_to_vk["Control"] # ^
+vk_shift = char_to_vk["Shift"] # +
+vk_option = char_to_vk["Option"] # !
 
-    token_list = key.split("-")
-    modifier_list = token_list[:-1]
-    char = token_list[-1]
-    vk = char_to_vk[char]
+def send(key, modifier = "", modinum = 1):
+    vk = char_to_vk[key]
     
-    if "D" in modifier_list:
+    if "D" in modifier:
         key_command_list = []
-        if "A" in modifier_list: key_command_list += [KeyDown(vk_alt)]
-        if "S" in modifier_list: key_command_list += [KeyDown(vk_shift)]
-        if "C" in modifier_list: key_command_list += [KeyDown(vk_ctrl)]
+        if "#" in modifier: key_command_list += [KeyDown(vk_command)]
+        if "^" in modifier: key_command_list += [KeyDown(vk_ctrl)]
+        if "+" in modifier: key_command_list += [KeyDown(vk_shift)]
+        if "!" in modifier: key_command_list += [KeyDown(vk_option)]
         key_command_list += [KeyDown(vk) for i in range(0, num)]
-    elif "U" in modifier_list:
+    elif "U" in modifier:
         key_command_list = []
-        if "A" in modifier_list: key_command_list += [KeyUp(vk_alt)]
-        if "S" in modifier_list: key_command_list += [KeyUp(vk_shift)]
-        if "C" in modifier_list: key_command_list += [KeyUp(vk_ctrl)]
+        if "#" in modifier: key_command_list += [KeyUp(vk_command)]
+        if "^" in modifier: key_command_list += [KeyUp(vk_ctrl)]
+        if "+" in modifier: key_command_list += [KeyUp(vk_shift)]
+        if "!" in modifier: key_command_list += [KeyUp(vk_option)]
         key_command_list += [KeyUp(vk) for i in range(0, num)]
     else:
         key_command_list = []
-        if "A" in modifier_list: key_command_list += [KeyDown(vk_alt)]
-        if "S" in modifier_list: key_command_list += [KeyDown(vk_shift)]
-        if "C" in modifier_list: key_command_list += [KeyDown(vk_ctrl)]
+        if "#" in modifier: key_command_list += [KeyDown(vk_command)]
+        if "^" in modifier: key_command_list += [KeyDown(vk_ctrl)]
+        if "+" in modifier: key_command_list += [KeyDown(vk_shift)]
+        if "!" in modifier: key_command_list += [KeyDown(vk_option)]
         key_command_list += [Key(vk) for i in range(0, num)]
-        if "C" in modifier_list: key_command_list += [KeyUp(vk_ctrl)]
-        if "S" in modifier_list: key_command_list += [KeyUp(vk_shift)]
-        if "A" in modifier_list: key_command_list += [KeyUp(vk_alt)]
+        if "#" in modifier: key_command_list += [KeyUp(vk_command)]
+        if "^" in modifier: key_command_list += [KeyUp(vk_ctrl)]
+        if "+" in modifier: key_command_list += [KeyUp(vk_shift)]
+        if "!" in modifier: key_command_list += [KeyUp(vk_option)]
 
     Input.send(key_command_list)
     

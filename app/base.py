@@ -32,32 +32,32 @@ class Keymap():
     def z(self):pass    
 
 class NomalKeymap(Keymap):
-    def a(self):send("D-A")
-    def b(self):send("D-B")
-    def c(self):send("D-C")
-    def d(self):send("D-D")
-    def e(self):send("D-E")
-    def f(self):send("D-F")
-    def g(self):send("D-G")
-    def h(self):send("D-H")
-    def i(self):send("D-I")
-    def j(self):send("D-J")
-    def k(self):send("D-K")
-    def l(self):send("D-L")
-    def m(self):send("D-M")
-    def n(self):send("D-N")
-    def o(self):send("D-O")
-    def p(self):send("D-P")
-    def q(self):send("D-Q")
-    def r(self):send("D-R")
-    def s(self):send("D-S")
-    def t(self):send("D-T")
-    def u(self):send("D-U")
-    def v(self):send("D-V")
-    def w(self):send("D-W")
-    def x(self):send("D-X")
-    def y(self):send("D-Y")
-    def z(self):send("D-Z")    
+    def a(self):send("A")
+    def b(self):send("B")
+    def c(self):send("C")
+    def d(self):send("D")
+    def e(self):send("E")
+    def f(self):send("F")
+    def g(self):send("G")
+    def h(self):send("H")
+    def i(self):send("I")
+    def j(self):send("J")
+    def k(self):send("K")
+    def l(self):send("L")
+    def m(self):send("M")
+    def n(self):send("N")
+    def o(self):send("O")
+    def p(self):send("P")
+    def q(self):send("Q")
+    def r(self):send("R")
+    def s(self):send("S")
+    def t(self):send("T")
+    def u(self):send("U")
+    def v(self):send("V")
+    def w(self):send("W")
+    def x(self):send("X")
+    def y(self):send("Y")
+    def z(self):send("Z")    
 
 class SubNomalKeymap(Keymap):
     pass
@@ -83,27 +83,23 @@ class App():
         self.keymap = self.nomal_keymap
 
     def down_nomal_mode_key(self):
-        print("down_nomal_mode_key")
         if not self.nomal_key_is_down:
             self.nomal_key_is_down = True
             self.keymap = self.subnomal_keymap
             self.keymap.init()
     
     def up_nomal_mode_key(self):
-        print("up_nomal_mode_key")
         self.nomal_key_is_down = False
         self.keymap = self.nomal_keymap
         self.keymap.init()
 
     def down_app_mode_key(self):
-        print("down_app_mode_key")
         if not self.app_key_is_down:
             self.app_key_is_down = True
             self.keymap = self.subapp_keymap
             self.keymap.init()
     
     def up_app_mode_key(self):
-        print("up_app_mode_key")
         self.app_key_is_down = False
         self.keymap = self.app_keymap
         self.keymap.init()

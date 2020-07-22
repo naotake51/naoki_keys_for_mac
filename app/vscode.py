@@ -7,28 +7,26 @@ class AppKeymap(base.AppKeymap):
         self.SELECTING_TEXT_MODE = 1
         self.SELECTING_KUKEI_TEXT_MODE = 2
         self.cursor_mode = self.MOVING_TEXT_MODE
-        #send("Esc")
-        print("init")
         send("Esc")
 
     # 新規作成、削除
     # def n(self):
     def b(self):
-        send("C-S-K")
+        send("K", "#+")
 
     # コピー、貼り付け、切り取り、元に戻す
     def c(self):
-        send("C-C")
+        send("C", "#")
         send("Esc")
         self.cursor_mode = self.MOVING_TEXT_MODE
 
     def v(self):
-        send("C-V")
+        send("V", "#")
         send("Esc")
         self.cursor_mode = self.MOVING_TEXT_MODE
 
     def x(self):
-        send("C-X")
+        send("X", "#")
         send("Esc")
         self.cursor_mode = self.MOVING_TEXT_MODE
     # def z(self):
@@ -42,83 +40,82 @@ class AppKeymap(base.AppKeymap):
         if self.cursor_mode == self.MOVING_TEXT_MODE:
             send("Up")
         elif self.cursor_mode == self.SELECTING_TEXT_MODE:
-            send("S-Up")
+            send("Up", "+")
         elif self.cursor_mode == self.SELECTING_KUKEI_TEXT_MODE:
-            send("C-A-Up")
+            send("Up", "#!")
     def k(self):
         if self.cursor_mode == self.MOVING_TEXT_MODE:
             send("Down")
         elif self.cursor_mode == self.SELECTING_TEXT_MODE:
-            send("S-Down")
+            send("Down", "+")
         elif self.cursor_mode == self.SELECTING_KUKEI_TEXT_MODE:
-            send("C-A-Down")
+            send("Down", "#!")
     def j(self):
         if self.cursor_mode == self.MOVING_TEXT_MODE:
             send("Left")
         elif self.cursor_mode == self.SELECTING_TEXT_MODE:
-            send("S-Left")
+            send("Left", "+")
         elif self.cursor_mode == self.SELECTING_KUKEI_TEXT_MODE:
-            send("S-Left")
+            send("Left", "+")
     def l(self):
         if self.cursor_mode == self.MOVING_TEXT_MODE:
             send("Right")
         elif self.cursor_mode == self.SELECTING_TEXT_MODE:
-            send("S-Right")
+            send("Right", "+")
         elif self.cursor_mode == self.SELECTING_KUKEI_TEXT_MODE:
-            send("S-Right")
+            send("Right", "+")
 
     # 大きく移動
     def e(self):
         if self.cursor_mode == self.MOVING_TEXT_MODE:
             send("PageUp")
         elif self.cursor_mode == self.SELECTING_TEXT_MODE:
-            send("S-Up", num = 10)
+            send("Up", n "+",um = 10)
         elif self.cursor_mode == self.SELECTING_KUKEI_TEXT_MODE:
-            send("C-A-Up", num = 10)
+            send("Up", "#!", num = 10)
     def d(self):
         if self.cursor_mode == self.MOVING_TEXT_MODE:
             send("PageDown")
         elif self.cursor_mode == self.SELECTING_TEXT_MODE:
-            send("S-Down", num = 10)
+            send("Down", "+", num = 10)
         elif self.cursor_mode == self.SELECTING_KUKEI_TEXT_MODE:
-            send("C-A-Down", num = 10)
+            send("Down", "#!", num = 10)
     def s(self):
         if self.cursor_mode == self.MOVING_TEXT_MODE:
             send("Home")
         elif self.cursor_mode == self.SELECTING_TEXT_MODE:
-            send("S-Home")
+            send("Home", "+")
         elif self.cursor_mode == self.SELECTING_KUKEI_TEXT_MODE:
-            send("S-Left", num = 3)
+            send("Left", "+", num = 3)
     def f(self):
         if self.cursor_mode == self.MOVING_TEXT_MODE:
             send("End")
         elif self.cursor_mode == self.SELECTING_TEXT_MODE:
-            send("S-End")
+            send("End", "+")
         elif self.cursor_mode == self.SELECTING_KUKEI_TEXT_MODE:
-            send("S-Right", num = 3)
+            send("Right", "+", num = 3)
 
     # メモ
     # def m(self):
 
     # 探す
     def o(self):
-        send("C-F")
+        send("F", "#")
     # def p(self):
 
     # 調べる
     # def q(self):
     def w(self):
-        send("Alt")
-        send("Alt")
+        pass
 
     # 変更、一つ選択、グループ選択、グループ選択
     def r(self):
-        send("A-F3")
+        send("F3", "!")
     def t(self):
-        send("C-D")
-        # send("C-A-T") #翻訳機能実行
+        send("D", "#")
+        # send("T", "#!") #翻訳機能実行
     def s_t(self):
-        send("C-U")
+        send("U", "#")
     def y(self):
         send("Esc")
         self.cursor_mode = self.SELECTING_KUKEI_TEXT_MODE
@@ -133,23 +130,23 @@ class SubAppKeymap(base.SubAppKeymap):
 
     # 新規作成、削除
     def n(self):
-        send("C-N")
+        send("N", "#")
     def b(self):
-        send("C-W")
+        send("W", "#")
 
     # コピー、貼り付け、切り取り、元に戻す
     def c(self):
-        send("C-K")
+        send("K", "#")
         send("Left")
     def v(self):
-        send("C-K")
+        send("K", "#")
         send("Left")
     def x(self):
-        send("C-K")
-        send("C-W")
+        send("K", "#")
+        send("W", "#")
     def z(self):
-        send("C-K")
-        send("C-W")
+        send("K", "#")
+        send("W", "#")
 
     # 前を消す、後ろを消す
     # def g(self):
@@ -161,20 +158,20 @@ class SubAppKeymap(base.SubAppKeymap):
     def k(self):
         send("Down")
     def j(self):
-        send("C-PageUp")
+        send("PageUp", "#")
     def l(self):
-        send("C-PageDown")
+        send("PageDown", "#")
 
     # 大きく移動
     def e(self):
         send("Esc")
-        send("A-\\")
+        send("\\", "!")
     def d(self):
         send("Esc")
     def s(self):
-        send("C-PageUp")
+        send("PageUp", "#")
     def f(self):
-        send("C-PageDown")
+        send("PageDown", "#")
 
     # メモ
     # def m(self):
