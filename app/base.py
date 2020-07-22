@@ -60,8 +60,9 @@ class NomalKeymap(Keymap):
     def z(self):send("Z")    
 
 class SubNomalKeymap(Keymap):
-    pass
-
+    def e(self):send("英数")
+    def n(self):send("かな")
+    
 class AppKeymap(Keymap):
     pass
 
@@ -139,10 +140,8 @@ class App():
     
         keymap["D-102"] = self.down_nomal_mode_key
         keymap["U-102"] = self.up_nomal_mode_key
-        keymap["D-104"] = self.down_nomal_mode_key
-        keymap["U-104"] = self.up_nomal_mode_key
-        keymap["D-RCmd"] = self.down_app_mode_key
-        keymap["U-RCmd"] = self.up_app_mode_key
+        keymap["D-104"] = self.down_app_mode_key
+        keymap["U-104"] = self.up_app_mode_key
         
         keymap["D-A"] = self.put_a
         keymap["D-B"] = self.put_b

@@ -70,7 +70,7 @@ class AppKeymap(base.AppKeymap):
         if self.cursor_mode == self.MOVING_TEXT_MODE:
             send("PageUp")
         elif self.cursor_mode == self.SELECTING_TEXT_MODE:
-            send("Up", n "+",um = 10)
+            send("Up", "+", num = 10)
         elif self.cursor_mode == self.SELECTING_KUKEI_TEXT_MODE:
             send("Up", "#!", num = 10)
     def d(self):
@@ -125,7 +125,6 @@ class AppKeymap(base.AppKeymap):
 
 class SubAppKeymap(base.SubAppKeymap):
     def init(self):
-        # send("Esc")
         send("Esc")
 
     # 新規作成、削除

@@ -6,7 +6,7 @@ char_to_vk = {
     "Clear" : 12,
     "Enter" : 0x24,
     "Shift" : 0x38,
-    "Ctrl" : 0x3B,
+    "Control" : 0x3B,
     # "Alt" : 18,
     # "Pause" : 19,
     # "Capital" : 20, #Shift+CapsLock
@@ -119,7 +119,9 @@ char_to_vk = {
     # "カタカナひらがな" : 242,
     # Mac用に追加
     "Command": 0x37,
-    "Option": 0x3A
+    "Option": 0x3A,
+    "英数": 102,
+    "かな": 104
 }
 
 vk_command = char_to_vk["Command"] # #
@@ -127,7 +129,7 @@ vk_ctrl = char_to_vk["Control"] # ^
 vk_shift = char_to_vk["Shift"] # +
 vk_option = char_to_vk["Option"] # !
 
-def send(key, modifier = "", modinum = 1):
+def send(key, modifier = "", num = 1):
     vk = char_to_vk[key]
     
     if "D" in modifier:
