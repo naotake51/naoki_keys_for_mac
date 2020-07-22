@@ -12,7 +12,7 @@ def test():
 
 def configure(keymap):
 
-    keymap_global = keymap.defineWindowKeymap()
+    # keymap_global = keymap.defineWindowKeymap()
 
     #各アプリのキーバインド設定
     from app import base
@@ -22,4 +22,4 @@ def configure(keymap):
     vscode.App().configure(keymap)
 
     #開発補助
-    keymap_global["F12"] = test
+    # keymap_global["F12"] = test

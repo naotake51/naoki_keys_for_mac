@@ -153,24 +153,19 @@ class SubAppKeymap(base.SubAppKeymap):
 
     # 移動
     def i(self):
-        send("Up")            
+        send("Up")
     def k(self):
         send("Down")
     def j(self):
-        send("PageUp", "#")
+        send("[", "#+")
     def l(self):
-        send("PageDown", "#")
+        send("]", "#+")
 
     # 大きく移動
-    def e(self):
-        send("Esc")
-        send("\\", "!")
-    def d(self):
-        send("Esc")
-    def s(self):
-        send("PageUp", "#")
-    def f(self):
-        send("PageDown", "#")
+    # def e(self):
+    # def d(self):
+    # def s(self):
+    # def f(self):
 
     # メモ
     # def m(self):

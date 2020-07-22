@@ -1,12 +1,13 @@
 from keyhac import *
 
 char_to_vk = {
+    # https://www.it-swarm-ja.tech/ja/macos/macの仮想キーコードのリストはどこにありますか？/969430761/
     "BackSpace" : 0x33, # Delと同じ
     "Tab" : 0x30,
     "Clear" : 12,
     "Enter" : 0x24,
     "Shift" : 0x38,
-    "Control" : 0x3B,
+    "Control" : 58,
     # "Alt" : 18,
     # "Pause" : 19,
     # "Capital" : 20, #Shift+CapsLock
@@ -91,26 +92,26 @@ char_to_vk = {
     "F10" : 0x6D,
     "F11" : 0x67,
     "F12" : 0x6F,
-    "F13" : 0x69, 
-    "F14" : 0x6B, 
+    "F13" : 0x69,
+    "F14" : 0x6B,
     "F15" : 0x71, 
-    "F16" : 0x6A, 
+    "F16" : 0x6A,
     "F17" : 0x40, 
     "F18" : 0x4F, 
     "F19" : 0x50, 
     "F20" : 0x5A, 
-    # "NumLock" : 144,
+    # "NumLock" : 144,
     # "ScrollLock" : 145,
-    # ":" : 186,
+    ":" : 0x27,
     ";" : 0x29,
     "," : 0x2B,
     "Minus" : 0x1B, #-をセパレーターとして使っているので使用できない
     "." : 0x2F,
     "/" : 0x2C,
-    "@" : 192,
-    "[" : 0x21,
+    "@" : 0x21,
+    "[" : 0x1E,
     "Yen" : 220,
-    "]" : 0x1E,
+    "]" : 0x2A, #わからない。http://www2d.biglobe.ne.jp/~msyk/keyboard/layout/usbkeycode.html を参考
     "^" : 222,
     "\\" : 0x2A,
     # "半角/全角" : 229,
@@ -121,7 +122,9 @@ char_to_vk = {
     "Command": 0x37,
     "Option": 0x3A,
     "英数": 102,
-    "かな": 104
+    "かな": 104,
+    "`" : 0x32
+
 }
 
 vk_command = char_to_vk["Command"] # #
@@ -153,10 +156,10 @@ def send(key, modifier = "", num = 1):
         if "+" in modifier: key_command_list += [KeyDown(vk_shift)]
         if "!" in modifier: key_command_list += [KeyDown(vk_option)]
         key_command_list += [Key(vk) for i in range(0, num)]
-        if "#" in modifier: key_command_list += [KeyUp(vk_command)]
-        if "^" in modifier: key_command_list += [KeyUp(vk_ctrl)]
-        if "+" in modifier: key_command_list += [KeyUp(vk_shift)]
         if "!" in modifier: key_command_list += [KeyUp(vk_option)]
+        if "+" in modifier: key_command_list += [KeyUp(vk_shift)]
+        if "^" in modifier: key_command_list += [KeyUp(vk_ctrl)]
+        if "#" in modifier: key_command_list += [KeyUp(vk_command)]
 
     Input.send(key_command_list)
     

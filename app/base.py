@@ -57,9 +57,10 @@ class NomalKeymap(Keymap):
     def w(self):send("W")
     def x(self):send("X")
     def y(self):send("Y")
-    def z(self):send("Z")    
+    def z(self):send("Z")
 
 class SubNomalKeymap(Keymap):
+    def init(self):send("英数")
     def e(self):send("英数")
     def n(self):send("かな")
     
@@ -67,7 +68,8 @@ class AppKeymap(Keymap):
     pass
 
 class SubAppKeymap(Keymap):
-    pass
+    def s(self):send("Left", "^")
+    def f(self):send("Right", "^")
 
 class App():
     nomal_key_is_down = False
@@ -134,38 +136,38 @@ class App():
 
     def configure(self, keymap):
         if self.app_name:
-            keymap = keymap.defineWindowKeymap(app_name=self.app_name)
+            mapping = keymap.defineWindowKeymap(app_name=self.app_name)
         else:
-            keymap = keymap.defineWindowKeymap()
+            mapping = keymap.defineWindowKeymap()
     
-        keymap["D-102"] = self.down_nomal_mode_key
-        keymap["U-102"] = self.up_nomal_mode_key
-        keymap["D-104"] = self.down_app_mode_key
-        keymap["U-104"] = self.up_app_mode_key
+        mapping["D-102"] = self.down_nomal_mode_key
+        mapping["U-102"] = self.up_nomal_mode_key
+        mapping["D-104"] = self.down_app_mode_key
+        mapping["U-104"] = self.up_app_mode_key
         
-        keymap["D-A"] = self.put_a
-        keymap["D-B"] = self.put_b
-        keymap["D-C"] = self.put_c
-        keymap["D-D"] = self.put_d
-        keymap["D-E"] = self.put_e
-        keymap["D-F"] = self.put_f
-        keymap["D-G"] = self.put_g
-        keymap["D-H"] = self.put_h
-        keymap["D-I"] = self.put_i
-        keymap["D-J"] = self.put_j
-        keymap["D-K"] = self.put_k
-        keymap["D-L"] = self.put_l
-        keymap["D-M"] = self.put_m
-        keymap["D-N"] = self.put_n
-        keymap["D-O"] = self.put_o
-        keymap["D-P"] = self.put_p
-        keymap["D-Q"] = self.put_q
-        keymap["D-R"] = self.put_r
-        keymap["D-S"] = self.put_s
-        keymap["D-T"] = self.put_t
-        keymap["D-U"] = self.put_u
-        keymap["D-V"] = self.put_v
-        keymap["D-W"] = self.put_w
-        keymap["D-X"] = self.put_x
-        keymap["D-Y"] = self.put_y
-        keymap["D-Z"] = self.put_z
+        mapping["D-A"] = self.put_a
+        mapping["D-B"] = self.put_b
+        mapping["D-C"] = self.put_c
+        mapping["D-D"] = self.put_d
+        mapping["D-E"] = self.put_e
+        mapping["D-F"] = self.put_f
+        mapping["D-G"] = self.put_g
+        mapping["D-H"] = self.put_h
+        mapping["D-I"] = self.put_i
+        mapping["D-J"] = self.put_j
+        mapping["D-K"] = self.put_k
+        mapping["D-L"] = self.put_l
+        mapping["D-M"] = self.put_m
+        mapping["D-N"] = self.put_n
+        mapping["D-O"] = self.put_o
+        mapping["D-P"] = self.put_p
+        mapping["D-Q"] = self.put_q
+        mapping["D-R"] = self.put_r
+        mapping["D-S"] = self.put_s
+        mapping["D-T"] = self.put_t
+        mapping["D-U"] = self.put_u
+        mapping["D-V"] = self.put_v
+        mapping["D-W"] = self.put_w
+        mapping["D-X"] = self.put_x
+        mapping["D-Y"] = self.put_y
+        mapping["D-Z"] = self.put_z
