@@ -233,6 +233,7 @@ class SubNomalKeymap(base.SubNomalKeymap):
 class App(base.App):
 
     def __init__(self):
+        super().__init__()
         self.app_name = None
 
         self.subnomal_keymap = SubNomalKeymap()
