@@ -5,35 +5,24 @@ class AppKeymap(base.AppKeymap):
     def init(self):
         self.MOVING_TEXT_MODE = 0
         self.SELECTING_TEXT_MODE = 1
-        self.SELECTING_KUKEI_TEXT_MODE = 2
         self.cursor_mode = self.MOVING_TEXT_MODE
-        send("Esc")
+        # send("Esc") # Escをするとフルスクリーンビューを閉じてしまう
 
     # 新規作成、削除
     # def n(self):
-    def b(self):
-        send("K", "#+")
+    # def b(self):
+    #     send("K", "#+")
 
     # コピー、貼り付け、切り取り、元に戻す
     def c(self):
         send("C", "#")
-        send("Esc")
-        self.cursor_mode = self.MOVING_TEXT_MODE
 
     def v(self):
         send("V", "#")
-        send("Esc")
-        self.cursor_mode = self.MOVING_TEXT_MODE
 
     def x(self):
         send("X", "#")
-        send("Esc")
-        self.cursor_mode = self.MOVING_TEXT_MODE
-
-    def z(self):
-        send("Z", "#")
-        send("Esc")
-        self.cursor_mode = self.MOVING_TEXT_MODE
+    # def z(self):
 
     # 前を消す、後ろを消す
     # def g(self):
@@ -45,59 +34,34 @@ class AppKeymap(base.AppKeymap):
             send("Up")
         elif self.cursor_mode == self.SELECTING_TEXT_MODE:
             send("Up", "+")
-        elif self.cursor_mode == self.SELECTING_KUKEI_TEXT_MODE:
-            send("Up", "#!")
+
     def k(self):
         if self.cursor_mode == self.MOVING_TEXT_MODE:
             send("Down")
         elif self.cursor_mode == self.SELECTING_TEXT_MODE:
             send("Down", "+")
-        elif self.cursor_mode == self.SELECTING_KUKEI_TEXT_MODE:
-            send("Down", "#!")
+
     def j(self):
         if self.cursor_mode == self.MOVING_TEXT_MODE:
             send("Left")
         elif self.cursor_mode == self.SELECTING_TEXT_MODE:
             send("Left", "+")
-        elif self.cursor_mode == self.SELECTING_KUKEI_TEXT_MODE:
-            send("Left", "+")
+
     def l(self):
         if self.cursor_mode == self.MOVING_TEXT_MODE:
             send("Right")
         elif self.cursor_mode == self.SELECTING_TEXT_MODE:
             send("Right", "+")
-        elif self.cursor_mode == self.SELECTING_KUKEI_TEXT_MODE:
-            send("Right", "+")
 
     # 大きく移動
     def e(self):
-        if self.cursor_mode == self.MOVING_TEXT_MODE:
-            send("PageUp")
-        elif self.cursor_mode == self.SELECTING_TEXT_MODE:
-            send("Up", "+", num = 10)
-        elif self.cursor_mode == self.SELECTING_KUKEI_TEXT_MODE:
-            send("Up", "#!", num = 10)
+        send("Up", "!")
     def d(self):
-        if self.cursor_mode == self.MOVING_TEXT_MODE:
-            send("PageDown")
-        elif self.cursor_mode == self.SELECTING_TEXT_MODE:
-            send("Down", "+", num = 10)
-        elif self.cursor_mode == self.SELECTING_KUKEI_TEXT_MODE:
-            send("Down", "#!", num = 10)
+        send("Down", "!")
     def s(self):
-        if self.cursor_mode == self.MOVING_TEXT_MODE:
-            send("Home")
-        elif self.cursor_mode == self.SELECTING_TEXT_MODE:
-            send("Home", "+")
-        elif self.cursor_mode == self.SELECTING_KUKEI_TEXT_MODE:
-            send("Left", "+", num = 3)
+        send("[", "#") #戻る
     def f(self):
-        if self.cursor_mode == self.MOVING_TEXT_MODE:
-            send("End")
-        elif self.cursor_mode == self.SELECTING_TEXT_MODE:
-            send("End", "+")
-        elif self.cursor_mode == self.SELECTING_KUKEI_TEXT_MODE:
-            send("Right", "+", num = 3)
+        send("]", "#") #進む
 
     # メモ
     # def m(self):
@@ -111,43 +75,28 @@ class AppKeymap(base.AppKeymap):
     # def q(self):
 
     # 変更、一つ選択、グループ選択、グループ選択
-    def r(self):
-        send("F3", "!")
-    def t(self):
-        send("D", "#")
-        # send("T", "#!") #翻訳機能実行
-    def s_t(self):
-        send("U", "#")
-    def y(self):
-        send("Esc")
-        self.cursor_mode = self.SELECTING_KUKEI_TEXT_MODE
+    # def r(self):
+    # def t(self):
+    # def y(self):
     def u(self):
-        send("Esc")
         self.cursor_mode = self.SELECTING_TEXT_MODE
 
 class SubAppKeymap(base.SubAppKeymap):
     def init(self):
-        send("Esc")
+        pass
+        # send("Esc") # Escをするとフルスクリーンビューを閉じてしまう
 
     # 新規作成、削除
     def n(self):
-        send("N", "#")
+        send("T", "#") #新規タブ
     def b(self):
-        send("W", "#")
+        send("W", "#") #タブを閉じる
 
     # コピー、貼り付け、切り取り、元に戻す
-    def c(self):
-        send("K", "#")
-        send("Left")
-    def v(self):
-        send("K", "#")
-        send("Left")
-    def x(self):
-        send("K", "#")
-        send("W", "#")
-    def z(self):
-        send("K", "#")
-        send("W", "#")
+    # def c(self):
+    # def v(self):
+    # def x(self):
+    # def z(self):
 
     # 前を消す、後ろを消す
     # def g(self):
@@ -159,9 +108,9 @@ class SubAppKeymap(base.SubAppKeymap):
     def k(self):
         send("Down")
     def j(self):
-        send("[", "#+")
+        send("Tab", "^+") #左のタブ
     def l(self):
-        send("]", "#+")
+        send("Tab", "^") #右のタブ
 
     # 大きく移動
     # def e(self):
@@ -236,7 +185,7 @@ class App(base.App):
 
     def __init__(self):
         super().__init__()
-        self.app_name = None
+        self.app_name = "com.apple.Safari"
 
         self.subnomal_keymap = SubNomalKeymap()
         self.app_keymap = AppKeymap()

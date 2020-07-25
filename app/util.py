@@ -7,7 +7,7 @@ char_to_vk = {
     "Clear" : 12,
     "Enter" : 0x24,
     "Shift" : 0x38,
-    "Control" : 58,
+    "Control" : 0x3B,
     # "Alt" : 18,
     # "Pause" : 19,
     # "Capital" : 20, #Shift+CapsLock

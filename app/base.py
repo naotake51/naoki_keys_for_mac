@@ -1,4 +1,8 @@
-from app.util import *        
+from app.util import * 
+# import sys, pprint       
+# pprint.pprint(sys.path)
+# pprint.pprint(sys.version)
+# import pyautogui
 
 class Keymap():
     def __init__(self): pass
@@ -29,7 +33,7 @@ class Keymap():
     def w(self):pass
     def x(self):pass
     def y(self):pass
-    def z(self):pass    
+    def z(self):pass
 
 class NomalKeymap(Keymap):
     def a(self):send("A")
@@ -63,13 +67,19 @@ class SubNomalKeymap(Keymap):
     def init(self):send("英数")
     def e(self):send("英数")
     def n(self):send("かな")
-    
+
 class AppKeymap(Keymap):
-    pass
+    def w(self):
+        send("V", "#^")
 
 class SubAppKeymap(Keymap):
-    def s(self):send("Left", "^")
-    def f(self):send("Right", "^")
+    pass
+    # keyhacを起動すると、Mission Controlのショートカットが効かなくなるバグがある
+    # https://github.com/crftwr/keyhac/issues/26
+    # def e(self):send("Up", "#")
+    # def f(self):send("Right", "#")
+    # def s(self):
+    #     pyautogui.press('e') 
 
 class App():
     nomal_key_is_down = False
@@ -78,11 +88,9 @@ class App():
 
     def __init__(self):
         self.app_name = None
-
         self.subnomal_keymap = SubNomalKeymap()
         self.app_keymap = AppKeymap()
         self.subapp_keymap = SubAppKeymap()
-
         self.keymap = self.nomal_keymap
 
     def down_nomal_mode_key(self):
