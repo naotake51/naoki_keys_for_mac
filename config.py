@@ -3,18 +3,19 @@
 import sys
 import os
 
-from keyhac import *
-
 # Keyhacの実行環境にKeyhacのパスが通っていないため、appモジュールを見つけられないので、自分でパスを通す必要がある。
 sys.path.append("/Users/takeshitanaoki/Library/Application Support/Keyhac")
 
-import app.util
+import keyhac
+dir(keyhac)
+
+# import app.util
 
 # def test():
 #     pass    
 
 def configure(keymap):
-    keymap_global = keymap.defineWindowKeymap()
+    # keymap_global = keymap.defineWindowKeymap()
 
     #各アプリのキーバインド設定
     from app import base
@@ -27,3 +28,28 @@ def configure(keymap):
 
     #開発補助
     # keymap_global["Ctrl-Right"] = "Right"
+
+# -------------------------------------------
+# スペース切り替えのショートカットが動作しない問題を調査
+# -------------------------------------------
+
+# # Mission Controlで右デスクトップに移動する
+# function switch_to_right_screen {
+#     osascript -e 'tell application "System Events" to tell process "WindowServer"
+#         key code 124 using control down
+#     end tell'
+# }
+
+# # Mission Controlで左デスクトップに移動する
+# function switch_to_left_screen {
+#     osascript -e 'tell application "System Events" to tell process "WindowServer"
+#         key code 123 using control down
+#     end tell'
+# }
+
+# /System/Applications/Mission\ Control.app/Contents/MacOS/Mission\ Control 1
+
+# strings /System/Applications/Mission\ Control.app/Contents/MacOS/Mission\ Control
+#     com.apple.expose.awake
+#     com.apple.showdesktop.awake
+#     com.apple.expose.front.awake
