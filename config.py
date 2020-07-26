@@ -21,10 +21,12 @@ def configure(keymap):
     from app import base
     from app import vscode
     from app import safari
+    from app import chrome
 
     base.App().configure(keymap)
     vscode.App().configure(keymap)
     safari.App().configure(keymap)
+    chrome.App().configure(keymap)
 
     #開発補助
     # keymap_global["Ctrl-Right"] = "Right"
