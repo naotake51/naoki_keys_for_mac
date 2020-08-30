@@ -27,7 +27,7 @@ class AppKeymap(base.AppKeymap):
 
     def x(self):
         send("X", "#")
-        send("Esc")
+        # send("Esc")
         self.cursor_mode = self.MOVING_TEXT_MODE
 
     def z(self):
@@ -112,7 +112,7 @@ class AppKeymap(base.AppKeymap):
 
     # 変更、一つ選択、グループ選択、グループ選択
     def r(self):
-        send("F3", "!")
+        send("F2", "#")
     def t(self):
         send("D", "#")
         # send("T", "#!") #翻訳機能実行

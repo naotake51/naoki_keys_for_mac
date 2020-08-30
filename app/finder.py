@@ -1,21 +1,19 @@
 from app import base
-from app.util import *
+from app.util import *        
 
-# アドレスバー意外にフォーカスがある場合、appname = NoneになるのでVSCodeのキーバーインドが適用されてしまう。。。
-# 自前でアプリケーションの切り替えをハンドルする方法を調べ中
-# test.pyはうまくいかなかった。
+# Finder上部にフルパスを表示させる方法
+# defaults write com.apple.finder _FXShowPosixPathInTitle -boolean true ※ or false
+# killall Finder
 
 class AppKeymap(base.AppKeymap):
     def init(self):
-        self.MOVING_TEXT_MODE = 0
-        self.SELECTING_TEXT_MODE = 1
-        self.cursor_mode = self.MOVING_TEXT_MODE
-        # send("Esc") # Escをするとフルスクリーンビューを閉じてしまう
+        pass
 
     # 新規作成、削除
-    # def n(self):
-    # def b(self):
-    #     send("K", "#+")
+    def n(self):
+        send("N", "#+") #ディレクトリを作成
+    def b(self):
+        send("BackSpace", "#") #ファイル、ディレクトリ削除
 
     # コピー、貼り付け、切り取り、元に戻す
     def c(self):
@@ -34,41 +32,28 @@ class AppKeymap(base.AppKeymap):
 
     # 移動
     def i(self):
-        if self.cursor_mode == self.MOVING_TEXT_MODE:
-            send("Up")
-        elif self.cursor_mode == self.SELECTING_TEXT_MODE:
-            send("Up", "+")
+        send("Up")
 
     def k(self):
-        if self.cursor_mode == self.MOVING_TEXT_MODE:
-            send("Down")
-        elif self.cursor_mode == self.SELECTING_TEXT_MODE:
-            send("Down", "+")
+        send("Down")
 
     def j(self):
-        if self.cursor_mode == self.MOVING_TEXT_MODE:
-            send("Left")
-        elif self.cursor_mode == self.SELECTING_TEXT_MODE:
-            send("Left", "+")
+        send("Left")
 
     def l(self):
-        if self.cursor_mode == self.MOVING_TEXT_MODE:
-            send("Right")
-        elif self.cursor_mode == self.SELECTING_TEXT_MODE:
-            send("Right", "+")
+        send("Right")
 
     # 大きく移動
-    def e(self):
-        send("Up", "!")
-    def d(self):
-        send("Down", "!")
+    # def e(self):
+    # def d(self):
     def s(self):
-        send("[", "#") #戻る
+        send("[", "#") #履歴戻る
     def f(self):
-        send("]", "#") #進む
+        send("]", "#") #履歴進む
 
     # メモ
-    # def m(self):
+    def m(self):
+        send("C", "#!") #フルパスをコピー ※ファイルやディレクトリを選択している場合はそのフルパスを、何も選択していない場合はカレントディレクトリのフルパスをコピーする
 
     # 探す
     def o(self):
@@ -81,9 +66,10 @@ class AppKeymap(base.AppKeymap):
     # 変更、一つ選択、グループ選択、グループ選択
     # def r(self):
     # def t(self):
-    # def y(self):
+    def y(self):
+        send("1", "#") #表示形式をアイコンに切り替える
     def u(self):
-        self.cursor_mode = self.SELECTING_TEXT_MODE
+        send("2", "#") #表示形式をリストに切り替える
 
 class SubAppKeymap(base.SubAppKeymap):
     def init(self):
@@ -108,9 +94,9 @@ class SubAppKeymap(base.SubAppKeymap):
 
     # 移動
     def i(self):
-        send("Up")
+        send("Up", "#") #親ディレクトリへ
     def k(self):
-        send("Down")
+        send("Down", "#") #子ディレクトリへ ファイルの場合は開く動作になる
     def j(self):
         send("Tab", "^+") #左のタブ
     def l(self):
@@ -189,7 +175,7 @@ class App(base.App):
 
     def __init__(self):
         super().__init__()
-        self.app_name = "com.google.Chrome"
+        self.app_name = "com.apple.finder"
 
         self.subnomal_keymap = SubNomalKeymap()
         self.app_keymap = AppKeymap()

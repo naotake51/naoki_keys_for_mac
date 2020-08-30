@@ -2,6 +2,10 @@
 
 import sys
 import os
+# from AppKit import NSWorkspace
+
+# active_app_name = NSWorkspace.sharedWorkspace().frontmostApplication().localizedName()
+# print(active_app_name)
 
 # Keyhacの実行環境にKeyhacのパスが通っていないため、appモジュールを見つけられないので、自分でパスを通す必要がある。
 sys.path.append("/Users/takeshitanaoki/Library/Application Support/Keyhac")
@@ -22,11 +26,13 @@ def configure(keymap):
     from app import vscode
     from app import safari
     from app import chrome
+    from app import finder
 
     base.App().configure(keymap)
     vscode.App().configure(keymap)
     safari.App().configure(keymap)
     chrome.App().configure(keymap)
+    finder.App().configure(keymap)
 
     #開発補助
     # keymap_global["Ctrl-Right"] = "Right"
