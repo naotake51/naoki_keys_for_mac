@@ -171,6 +171,11 @@ class SubNomalKeymap(base.SubNomalKeymap):
     # def y(self):
     # def u(self):
 
+    # 探す(試)
+    def f(self):
+        send("F", "#") # search
+    # def g(self):
+
 class App(base.App):
 
     def __init__(self):

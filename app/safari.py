@@ -1,5 +1,5 @@
 from app import base
-from app.util import *        
+from app.util import *
 
 class AppKeymap(base.AppKeymap):
     def init(self):
@@ -133,7 +133,7 @@ class SubAppKeymap(base.SubAppKeymap):
     # def t(self):
     # def y(self):
     # def u(self):
-        
+
 class SubNomalKeymap(base.SubNomalKeymap):
     # 新規作成、削除
     # def n(self):
@@ -151,7 +151,7 @@ class SubNomalKeymap(base.SubNomalKeymap):
 
     # 移動
     def i(self):
-        send("Up")            
+        send("Up")
     def k(self):
         send("Down")
     def j(self):
@@ -180,6 +180,11 @@ class SubNomalKeymap(base.SubNomalKeymap):
     # def t(self):
     # def y(self):
     # def u(self):
+
+    # 探す(試)
+    def f(self):
+        send("F", "#") # search
+    # def g(self):
 
 class App(base.App):
 

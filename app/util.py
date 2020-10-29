@@ -134,7 +134,7 @@ vk_option = char_to_vk["Option"] # !
 
 def send(key, modifier = "", num = 1):
     vk = char_to_vk[key]
-    
+
     if "D" in modifier:
         key_command_list = []
         if "#" in modifier: key_command_list += [KeyDown(vk_command)]
@@ -162,7 +162,7 @@ def send(key, modifier = "", num = 1):
         if "#" in modifier: key_command_list += [KeyUp(vk_command)]
 
     Input.send(key_command_list)
-    
+
 def send_string(string):
     key_command_list = []
     for c in string:

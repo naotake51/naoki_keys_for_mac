@@ -1,5 +1,5 @@
 from app import base
-from app.util import *        
+from app.util import *
 
 class AppKeymap(base.AppKeymap):
     def init(self):
@@ -7,7 +7,7 @@ class AppKeymap(base.AppKeymap):
         self.SELECTING_TEXT_MODE = 1
         self.SELECTING_KUKEI_TEXT_MODE = 2
         self.cursor_mode = self.MOVING_TEXT_MODE
-        send("Esc")
+        # send("Esc")
 
     # 新規作成、削除
     # def n(self):
@@ -184,7 +184,7 @@ class SubAppKeymap(base.SubAppKeymap):
     # def t(self):
     # def y(self):
     # def u(self):
-        
+
 class SubNomalKeymap(base.SubNomalKeymap):
     # 新規作成、削除
     # def n(self):
@@ -231,6 +231,12 @@ class SubNomalKeymap(base.SubNomalKeymap):
     # def t(self):
     # def y(self):
     # def u(self):
+
+    # 探す(試)
+    def f(self):
+        send("F", "#") # search
+    def g(self):
+        send("F", "#+") # global search
 
 class App(base.App):
 
