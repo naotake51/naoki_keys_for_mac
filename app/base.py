@@ -63,6 +63,8 @@ class NomalKeymap(Keymap):
     def y(self):send("Y")
     def z(self):send("Z")
 
+    def g_up(self): pass
+
 class SubNomalKeymap(Keymap):
     def init(self):send("英数")
     def a(self):
@@ -145,6 +147,8 @@ class App():
     def put_y(self): self.keymap.y()
     def put_z(self): self.keymap.z()
 
+    def put_g_up(self): self.keymap.g_up()
+
     def configure(self, keymap):
         if self.app_name:
             mapping = keymap.defineWindowKeymap(app_name=self.app_name)
@@ -182,3 +186,5 @@ class App():
         mapping["D-X"] = self.put_x
         mapping["D-Y"] = self.put_y
         mapping["D-Z"] = self.put_z
+
+        mapping["U-G"] = self.put_g_up
