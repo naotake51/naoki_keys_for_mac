@@ -37,7 +37,8 @@ class AppKeymap(base.AppKeymap):
 
     # 前を消す、後ろを消す
     # def g(self):
-    # def h(self):
+    def h(self):
+        send("Del")
 
     # 移動
     def i(self):
@@ -202,7 +203,7 @@ class SubNomalKeymap(base.SubNomalKeymap):
 
     # 移動
     def i(self):
-        send("Up")            
+        send("Up")
     def k(self):
         send("Down")
     def j(self):
@@ -242,7 +243,7 @@ class App(base.App):
 
     def __init__(self):
         super().__init__()
-        self.app_name = None
+        self.app_name = None # VSCodeの判定ができないので全てに適用
 
         self.subnomal_keymap = SubNomalKeymap()
         self.app_keymap = AppKeymap()

@@ -11,12 +11,10 @@ import os
 sys.path.append("/Users/takeshitanaoki/Library/Application Support/Keyhac")
 
 import keyhac
-dir(keyhac)
-
 # import app.util
 
 # def test():
-#     pass    
+#     pass
 
 def configure(keymap):
     # keymap_global = keymap.defineWindowKeymap()
