@@ -1,5 +1,7 @@
 from app import base
 from app.util import *
+import pyperclip
+import time
 
 class AppKeymap(base.AppKeymap):
     def init(self):
@@ -9,6 +11,7 @@ class AppKeymap(base.AppKeymap):
         self.cursor_mode = self.MOVING_TEXT_MODE
         # send("Esc")
         self.extend_modifire = False
+        self.word_queue = []
 
     # 新規作成、削除
     # def n(self):
@@ -107,7 +110,17 @@ class AppKeymap(base.AppKeymap):
             send("Right", "+", num = 3)
 
     # メモ
-    # def m(self):
+    def m(self):
+        if self.extend_modifire:
+            if not self.word_queue:
+                return
+            word = self.word_queue.pop(0)
+            print(self.word_queue)
+            pyperclip.copy(word)
+        else:
+            word = pyperclip.paste()
+            self.word_queue.append(word)
+            print(self.word_queue)
 
     # 探す
     def o(self):

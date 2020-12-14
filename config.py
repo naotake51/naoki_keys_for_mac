@@ -9,6 +9,7 @@ import os
 
 # Keyhacの実行環境にKeyhacのパスが通っていないため、appモジュールを見つけられないので、自分でパスを通す必要がある。
 sys.path.append("/Users/takeshitanaoki/Library/Application Support/Keyhac")
+sys.path.append("/Users/takeshitanaoki/.pyenv/versions/3.7.5/lib/python3.7/site-packages")
 
 import keyhac
 # import app.util
