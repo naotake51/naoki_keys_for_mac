@@ -158,10 +158,12 @@ class AppKeymap(base.AppKeymap):
         send("Z", "#")
         send("Y", "#")
     def t(self):
-        send("D", "#")
+        if self.extend_modifire:
+            send("U", "#")
+        else:
+            send("D", "#")
         # send("T", "#!") #翻訳機能実行
-    def s_t(self):
-        send("U", "#")
+
     def y(self):
         send("Esc")
         self.cursor_mode = self.SELECTING_KUKEI_TEXT_MODE
