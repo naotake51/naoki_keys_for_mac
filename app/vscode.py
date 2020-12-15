@@ -14,7 +14,8 @@ class AppKeymap(base.AppKeymap):
         self.word_queue = []
 
     # 新規作成、削除
-    # def n(self):
+    def n(self):
+        send("Enter", "#")
     def b(self):
         send("K", "#+")
 
