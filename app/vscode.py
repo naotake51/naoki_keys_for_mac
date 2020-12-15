@@ -213,8 +213,10 @@ class SubAppKeymap(base.SubAppKeymap):
         send("]", "#+")
 
     # 大きく移動
-    # def e(self):
-    # def d(self):
+    def e(self):
+        send("1", "#") # focus editor
+    def d(self):
+        send("T", "^!") # focus terminal
     # def s(self):
     # def f(self):
 
@@ -255,7 +257,8 @@ class SubNomalKeymap(base.SubNomalKeymap):
 
     # 前を消す、後ろを消す
     # def g(self):
-    # def h(self):
+    def h(self):
+        send("Del") # for tarminal
 
     # 移動
     def i(self):
