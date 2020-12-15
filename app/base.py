@@ -88,6 +88,10 @@ class SubAppKeymap(Keymap):
     # def f(self):send("Right", "#")
     # def s(self):
     #     pyautogui.press('e')
+    def s(self):
+        send(",", "#") # keyhacを起動している状態だと、なぜか「^Left」,「#Left」のショートカットが動かなくなるので、キーボードの設定でショートカットを変更した。
+    def f(self):
+        send(".", "#") # keyhacを起動している状態だと、なぜか「^Right」,「#Right」のショートカットが動かなくなる、キーボードの設定でショートカットを変更した。
 
 class App():
     nomal_key_is_down = False
