@@ -27,7 +27,7 @@ def configure(keymap):
     from app import chrome
     from app import finder
 
-    base.App().configure(keymap)
+    base.App(None, base.SubNomalKeymap, base.AppKeymap, base.SubAppKeymap).configure(keymap)
     vscode.App().configure(keymap)
     safari.App().configure(keymap)
     chrome.App().configure(keymap)

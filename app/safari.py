@@ -189,9 +189,4 @@ class SubNomalKeymap(base.SubNomalKeymap):
 class App(base.App):
 
     def __init__(self):
-        super().__init__()
-        self.app_name = "com.apple.Safari"
-
-        self.subnomal_keymap = SubNomalKeymap()
-        self.app_keymap = AppKeymap()
-        self.subapp_keymap = SubAppKeymap()
+        super().__init__("com.apple.Safari", SubNomalKeymap, AppKeymap, SubAppKeymap)

@@ -7,7 +7,6 @@ from app.util import *
 class Keymap():
     def __init__(self): pass
 
-    def init(self):pass
     def a(self):pass
     def b(self):pass
     def c(self):pass
@@ -66,22 +65,25 @@ class NomalKeymap(Keymap):
     def z(self):send("Z")
 
 class SubNomalKeymap(Keymap):
-    def init(self):
+    def __init__(self):
+        super().__init__()
         send("英数")
     def a(self):
         send("Space", "!") # Alfred Open!
-    # def e(self):send("英数") # 英数二度押しになり日本語入力文字が英数に変換されてしまう
+    # def e(self):send("英数") # 不要
     def n(self):send("かな")
 
 class AppKeymap(Keymap):
-    def init(self):pass
+    def __init__(self):
+        super().__init__()
     def w(self):
         send("V", "#^") # Clipy
     def q(self):
         send("B", "#^") # Clipy
 
 class SubAppKeymap(Keymap):
-    def init(self):pass
+    def __init__(self):
+        super().__init__()
     # keyhacを起動すると、Mission Controlのショートカットが効かなくなるバグがある
     # https://github.com/crftwr/keyhac/issues/26
     # def e(self):send("Up", "#")
@@ -96,36 +98,32 @@ class SubAppKeymap(Keymap):
 class App():
     nomal_key_is_down = False
     app_key_is_down = False
-    nomal_keymap = NomalKeymap()
 
-    def __init__(self):
-        self.app_name = None
-        self.subnomal_keymap = SubNomalKeymap()
-        self.app_keymap = AppKeymap()
-        self.subapp_keymap = SubAppKeymap()
-        self.keymap = self.nomal_keymap
+    def __init__(self, app_name, subnomal_keymap, app_keymap, subapp_keymap):
+        self.app_name = app_name
+        self.nomal_keymap = NomalKeymap
+        self.subnomal_keymap = subnomal_keymap
+        self.app_keymap = app_keymap
+        self.subapp_keymap = subapp_keymap
+        self.keymap = self.nomal_keymap()
 
     def down_nomal_mode_key(self):
         if not self.nomal_key_is_down:
             self.nomal_key_is_down = True
-            self.keymap = self.subnomal_keymap
-            self.keymap.init()
+            self.keymap = self.subnomal_keymap()
 
     def up_nomal_mode_key(self):
         self.nomal_key_is_down = False
-        self.keymap = self.nomal_keymap
-        self.keymap.init()
+        self.keymap = self.nomal_keymap()
 
     def down_app_mode_key(self):
         if not self.app_key_is_down:
             self.app_key_is_down = True
-            self.keymap = self.subapp_keymap
-            self.keymap.init()
+            self.keymap = self.subapp_keymap()
 
     def up_app_mode_key(self):
         self.app_key_is_down = False
-        self.keymap = self.app_keymap
-        self.keymap.init()
+        self.keymap = self.app_keymap()
 
     def put_a(self): self.keymap.a()
     def put_b(self): self.keymap.b()

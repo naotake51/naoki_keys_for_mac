@@ -6,7 +6,8 @@ import time
 jumpy = False
 
 class AppKeymap(base.AppKeymap):
-    def init(self):
+    def __init__(self):
+        super().__init__()
         self.MOVING_TEXT_MODE = 0
         self.SELECTING_TEXT_MODE = 1
         self.SELECTING_KUKEI_TEXT_MODE = 2
@@ -168,7 +169,8 @@ class AppKeymap(base.AppKeymap):
         self.cursor_mode = self.SELECTING_TEXT_MODE
 
 class SubAppKeymap(base.SubAppKeymap):
-    def init(self):
+    def __init__(self):
+        super().__init__()
         send("Esc")
 
         global jumpy
@@ -234,7 +236,8 @@ class SubAppKeymap(base.SubAppKeymap):
         send("K", "#!") # Bookmark Toggle
 
 class SubNomalKeymap(base.SubNomalKeymap):
-    def init(self):
+    def __init__(self):
+        super().__init__()
         global jumpy
         if jumpy:
             send("J", "#+") # 拡張機能JumpyのOFFコマンド。VSCodeのショートカットを設定した。
@@ -300,9 +303,4 @@ class SubNomalKeymap(base.SubNomalKeymap):
 class App(base.App):
 
     def __init__(self):
-        super().__init__()
-        self.app_name = None # VSCodeの判定ができないので全てに適用
-
-        self.subnomal_keymap = SubNomalKeymap()
-        self.app_keymap = AppKeymap()
-        self.subapp_keymap = SubAppKeymap()
+        super().__init__(None, SubNomalKeymap, AppKeymap, SubAppKeymap)
