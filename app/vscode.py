@@ -3,6 +3,8 @@ from app.util import *
 import pyperclip
 import time
 
+jumpy = False
+
 class AppKeymap(base.AppKeymap):
     def init(self):
         self.MOVING_TEXT_MODE = 0
@@ -169,6 +171,11 @@ class SubAppKeymap(base.SubAppKeymap):
     def init(self):
         send("Esc")
 
+        global jumpy
+        if jumpy:
+            send("J", "#+") # 拡張機能JumpyのOFFコマンド。VSCodeのショートカットを設定した。
+            jumpy = False
+
     # 新規作成、削除
     def n(self):
         send("N", "#")
@@ -227,6 +234,12 @@ class SubAppKeymap(base.SubAppKeymap):
         send("K", "#!") # Bookmark Toggle
 
 class SubNomalKeymap(base.SubNomalKeymap):
+    def init(self):
+        global jumpy
+        if jumpy:
+            send("J", "#+") # 拡張機能JumpyのOFFコマンド。VSCodeのショートカットを設定した。
+            jumpy = False
+
     # 新規作成、削除
     # def n(self):
     # def b(self):
@@ -272,7 +285,11 @@ class SubNomalKeymap(base.SubNomalKeymap):
     # def r(self):
     # def t(self):
     # def y(self):
-    # def u(self):
+    def u(self):
+        global jumpy
+        if not jumpy:
+            send("J", "#") # 拡張機能JumpyのONコマンド。VSCodeのショートカットを設定した。
+            jumpy = True
 
     # 探す(試)
     def f(self):
