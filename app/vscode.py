@@ -155,7 +155,8 @@ class AppKeymap(base.AppKeymap):
 
     # 変更、一つ選択、グループ選択、グループ選択
     def r(self):
-        send("F2", "#")
+        send("Z", "#")
+        send("Y", "#")
     def t(self):
         send("D", "#")
         # send("T", "#!") #翻訳機能実行
