@@ -262,7 +262,8 @@ class SubNomalKeymap(base.SubNomalKeymap):
 
     # 探す
     # def o(self):
-    # def p(self):
+    def p(self):
+        send("P", "#")
 
     # 調べる
     # def q(self):
