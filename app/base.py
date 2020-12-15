@@ -66,10 +66,11 @@ class NomalKeymap(Keymap):
     def g_up(self): pass
 
 class SubNomalKeymap(Keymap):
-    def init(self):send("英数")
+    def init(self):
+        send("英数")
     def a(self):
         send("Space", "!") # Alfred Open!
-    def e(self):send("英数")
+    # def e(self):send("英数") # 英数二度押しになり日本語入力文字が英数に変換されてしまう
     def n(self):send("かな")
 
 class AppKeymap(Keymap):
