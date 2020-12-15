@@ -65,8 +65,6 @@ class NomalKeymap(Keymap):
     def y(self):send("Y")
     def z(self):send("Z")
 
-    def g_up(self): pass
-
 class SubNomalKeymap(Keymap):
     def init(self):
         send("英数")
