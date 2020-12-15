@@ -35,6 +35,8 @@ class Keymap():
     def y(self):pass
     def z(self):pass
 
+    def g_up(self): pass
+
 class NomalKeymap(Keymap):
     def a(self):send("A")
     def b(self):send("B")
