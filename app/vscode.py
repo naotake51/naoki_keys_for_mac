@@ -50,34 +50,56 @@ class AppKeymap(base.AppKeymap):
     # 移動
     def i(self):
         if self.cursor_mode == self.MOVING_TEXT_MODE:
-            send("Up")
+            if self.extend_modifire:
+                send("J", "#!") # Bookmark Previous
+            else:
+                send("Up")
         elif self.cursor_mode == self.SELECTING_TEXT_MODE:
             send("Up", "+")
         elif self.cursor_mode == self.SELECTING_KUKEI_TEXT_MODE:
             send("Up", "#!")
     def k(self):
         if self.cursor_mode == self.MOVING_TEXT_MODE:
-            send("Down")
+            if self.extend_modifire:
+                send("L", "#!") # Bookmark Next
+            else:
+                send("Down")
         elif self.cursor_mode == self.SELECTING_TEXT_MODE:
             send("Down", "+")
         elif self.cursor_mode == self.SELECTING_KUKEI_TEXT_MODE:
             send("Down", "#!")
     def j(self):
-        ext = "!" if self.extend_modifire else ""
         if self.cursor_mode == self.MOVING_TEXT_MODE:
-            send("Left", ext)
+            if self.extend_modifire:
+                send("Left", "!")
+            else:
+                send("Left")
         elif self.cursor_mode == self.SELECTING_TEXT_MODE:
-            send("Left", "+" + ext)
+            if self.extend_modifire:
+                send("Left", "+!")
+            else:
+                send("Left", "+")
         elif self.cursor_mode == self.SELECTING_KUKEI_TEXT_MODE:
-            send("Left", "+" + ext)
+            if self.extend_modifire:
+                send("Left", "+!")
+            else:
+                send("Left", "+")
     def l(self):
-        ext = "!" if self.extend_modifire else ""
         if self.cursor_mode == self.MOVING_TEXT_MODE:
-            send("Right", ext)
+            if self.extend_modifire:
+                send("Right", "!")
+            else:
+                send("Right")
         elif self.cursor_mode == self.SELECTING_TEXT_MODE:
-            send("Right", "+" + ext)
+            if self.extend_modifire:
+                send("Right", "+!")
+            else:
+                send("Right", "+")
         elif self.cursor_mode == self.SELECTING_KUKEI_TEXT_MODE:
-            send("Right", "+" + ext)
+            if self.extend_modifire:
+                send("Right", "+!")
+            else:
+                send("Right", "+")
 
     # 大きく移動
     def e(self):
@@ -142,8 +164,11 @@ class AppKeymap(base.AppKeymap):
         send("Esc")
         self.cursor_mode = self.SELECTING_KUKEI_TEXT_MODE
     def u(self):
-        send("Esc")
-        self.cursor_mode = self.SELECTING_TEXT_MODE
+        if self.extend_modifire:
+            send("K", "#!") # Bookmark Toggle
+        else:
+            send("Esc")
+            self.cursor_mode = self.SELECTING_TEXT_MODE
 
 class SubAppKeymap(base.SubAppKeymap):
     def init(self):
