@@ -76,7 +76,9 @@ class SubNomalKeymap(Keymap):
 class AppKeymap(Keymap):
     def init(self):pass
     def w(self):
-        send("V", "#^")
+        send("V", "#^") # Clipy
+    def q(self):
+        send("B", "#^") # Clipy
 
 class SubAppKeymap(Keymap):
     def init(self):pass
