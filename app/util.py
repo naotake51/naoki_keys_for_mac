@@ -1,6 +1,7 @@
 from keyhac import *
 
 char_to_vk = {
+    # https://eastmanreference.com/complete-list-of-applescript-key-codes
     # https://www.it-swarm-ja.tech/ja/macos/macの仮想キーコードのリストはどこにありますか？/969430761/
     "BackSpace" : 0x33, # Delと同じ
     "Tab" : 0x30,
@@ -94,12 +95,12 @@ char_to_vk = {
     "F12" : 0x6F,
     "F13" : 0x69,
     "F14" : 0x6B,
-    "F15" : 0x71, 
+    "F15" : 0x71,
     "F16" : 0x6A,
-    "F17" : 0x40, 
-    "F18" : 0x4F, 
-    "F19" : 0x50, 
-    "F20" : 0x5A, 
+    "F17" : 0x40,
+    "F18" : 0x4F,
+    "F19" : 0x50,
+    "F20" : 0x5A,
     # "NumLock" : 144,
     # "ScrollLock" : 145,
     ":" : 0x27,
@@ -124,7 +125,6 @@ char_to_vk = {
     "英数": 102,
     "かな": 104,
     "`" : 0x32
-
 }
 
 vk_command = char_to_vk["Command"] # #
