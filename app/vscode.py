@@ -51,20 +51,14 @@ class AppKeymap(base.AppKeymap):
     # 移動
     def i(self):
         if self.cursor_mode == self.MOVING_TEXT_MODE:
-            if self.extend_modifire:
-                send("J", "#!") # Bookmark Previous
-            else:
-                send("Up")
+            send("Up")
         elif self.cursor_mode == self.SELECTING_TEXT_MODE:
             send("Up", "+")
         elif self.cursor_mode == self.SELECTING_KUKEI_TEXT_MODE:
             send("Up", "#!")
     def k(self):
         if self.cursor_mode == self.MOVING_TEXT_MODE:
-            if self.extend_modifire:
-                send("L", "#!") # Bookmark Next
-            else:
-                send("Down")
+            send("Down")
         elif self.cursor_mode == self.SELECTING_TEXT_MODE:
             send("Down", "+")
         elif self.cursor_mode == self.SELECTING_KUKEI_TEXT_MODE:
@@ -168,11 +162,8 @@ class AppKeymap(base.AppKeymap):
         send("Esc")
         self.cursor_mode = self.SELECTING_KUKEI_TEXT_MODE
     def u(self):
-        if self.extend_modifire:
-            send("K", "#!") # Bookmark Toggle
-        else:
-            send("Esc")
-            self.cursor_mode = self.SELECTING_TEXT_MODE
+        send("Esc")
+        self.cursor_mode = self.SELECTING_TEXT_MODE
 
 class SubAppKeymap(base.SubAppKeymap):
     def init(self):
@@ -204,9 +195,9 @@ class SubAppKeymap(base.SubAppKeymap):
 
     # 移動
     def i(self):
-        send("Up")
+        send("J", "#!") # Bookmark Previous
     def k(self):
-        send("Down")
+        send("L", "#!") # Bookmark Next
     def j(self):
         send("[", "#+")
     def l(self):
@@ -232,7 +223,8 @@ class SubAppKeymap(base.SubAppKeymap):
     # def r(self):
     # def t(self):
     # def y(self):
-    # def u(self):
+    def u(self):
+        send("K", "#!") # Bookmark Toggle
 
 class SubNomalKeymap(base.SubNomalKeymap):
     # 新規作成、削除
