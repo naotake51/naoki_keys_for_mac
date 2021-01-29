@@ -157,7 +157,7 @@ class AppKeymap(base.AppKeymap):
         if self.extend_modifire:
             send("U", "#")
         else:
-            send("D", "#")
+        send("D", "#")
         # send("T", "#!") #翻訳機能実行
 
     def y(self):
