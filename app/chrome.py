@@ -209,10 +209,10 @@ class SubNomalKeymap(base.SubNomalKeymap):
         send("F", "#") # search
     # def g(self):
 
-class App(base.App):
+# class App(base.App):
 
-    def __init__(self):
-        # Chromeのツールバーあたりにフォーカスがあると有効だが、コンテンツページ部分にフォーカスがあるとWindow: Noneになってしまい、このキーマップが有効にならない
-        super().__init__("com.google.chrome", SubNomalKeymap, AppKeymap, SubAppKeymap)
+#     def __init__(self):
+#         # Chromeのツールバーあたりにフォーカスがあると有効だが、コンテンツページ部分にフォーカスがあるとWindow: Noneになってしまい、このキーマップが有効にならない
+#         super().__init__("com.google.chrome", SubNomalKeymap, AppKeymap, SubAppKeymap)
 
 keymaps = [NomalKeymap, SubNomalKeymap, AppKeymap, SubAppKeymap]

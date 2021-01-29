@@ -297,9 +297,9 @@ class SubNomalKeymap(base.SubNomalKeymap):
     def g(self):
         send("F", "#+") # global search
 
-class App(base.App):
+# class App(base.App):
 
-    def __init__(self):
-        super().__init__(None, SubNomalKeymap, AppKeymap, SubAppKeymap)
+#     def __init__(self):
+#         super().__init__(None, SubNomalKeymap, AppKeymap, SubAppKeymap)
 
 keymaps = [base.NomalKeymap, SubNomalKeymap, AppKeymap, SubAppKeymap]

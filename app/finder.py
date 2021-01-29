@@ -176,9 +176,9 @@ class SubNomalKeymap(base.SubNomalKeymap):
         send("F", "#") # search
     # def g(self):
 
-class App(base.App):
+# class App(base.App):
 
-    def __init__(self):
-        super().__init__("com.apple.finder", SubNomalKeymap, AppKeymap, SubAppKeymap)
+#     def __init__(self):
+#         super().__init__("com.apple.finder", SubNomalKeymap, AppKeymap, SubAppKeymap)
 
 keymaps = [base.NomalKeymap, SubNomalKeymap, AppKeymap, SubAppKeymap]
