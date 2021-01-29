@@ -90,8 +90,7 @@ class Main:
         mapping["D-X"] = self.create_action("x")
         mapping["D-Y"] = self.create_action("y")
         mapping["D-Z"] = self.create_action("z")
-
-        mapping["U-G"] = self.create_action("g_up")
+        mapping["D-Semicolon"] = self.create_action("semicolon")
 
     def down_nomal_mode_key(self):
         if not self.nomal_key_is_down:

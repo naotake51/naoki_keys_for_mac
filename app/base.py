@@ -33,9 +33,7 @@ class Keymap():
     def x(self):pass
     def y(self):pass
     def z(self):pass
-
-    def g_up(self): pass
-
+    def semicolon(self):pass
 class NomalKeymap(Keymap):
     def a(self):send("A")
     def b(self):send("B")
@@ -63,7 +61,7 @@ class NomalKeymap(Keymap):
     def x(self):send("X")
     def y(self):send("Y")
     def z(self):send("Z")
-
+    def semicolon(self):send(";")
 class SubNomalKeymap(Keymap):
     def __init__(self):
         super().__init__()

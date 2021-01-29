@@ -13,7 +13,6 @@ class AppKeymap(base.AppKeymap):
         self.SELECTING_KUKEI_TEXT_MODE = 2
         self.cursor_mode = self.MOVING_TEXT_MODE
         # send("Esc")
-        self.extend_modifire = False
         self.word_queue = []
 
     # 新規作成、削除
@@ -45,11 +44,8 @@ class AppKeymap(base.AppKeymap):
 
     # 前を消す、後ろを消す
     def g(self):
-        self.extend_modifire = True
-    def g_up(self):
-        self.extend_modifire = False
-    def h(self):
         send("Del")
+    # def h(self):
 
     # 移動
     def i(self):
@@ -68,36 +64,18 @@ class AppKeymap(base.AppKeymap):
             send("Down", "#!")
     def j(self):
         if self.cursor_mode == self.MOVING_TEXT_MODE:
-            if self.extend_modifire:
-                send("Left", "!")
-            else:
-                send("Left")
+            send("Left")
         elif self.cursor_mode == self.SELECTING_TEXT_MODE:
-            if self.extend_modifire:
-                send("Left", "+!")
-            else:
-                send("Left", "+")
+            send("Left", "+")
         elif self.cursor_mode == self.SELECTING_KUKEI_TEXT_MODE:
-            if self.extend_modifire:
-                send("Left", "+!")
-            else:
-                send("Left", "+")
+            send("Left", "+")
     def l(self):
         if self.cursor_mode == self.MOVING_TEXT_MODE:
-            if self.extend_modifire:
-                send("Right", "!")
-            else:
-                send("Right")
+            send("Right")
         elif self.cursor_mode == self.SELECTING_TEXT_MODE:
-            if self.extend_modifire:
-                send("Right", "+!")
-            else:
-                send("Right", "+")
+            send("Right", "+")
         elif self.cursor_mode == self.SELECTING_KUKEI_TEXT_MODE:
-            if self.extend_modifire:
-                send("Right", "+!")
-            else:
-                send("Right", "+")
+            send("Right", "+")
 
     # 大きく移動
     def e(self):
@@ -114,6 +92,20 @@ class AppKeymap(base.AppKeymap):
             send("Down", "+", num = 10)
         elif self.cursor_mode == self.SELECTING_KUKEI_TEXT_MODE:
             send("Down", "#!", num = 10)
+    def h(self):
+        if self.cursor_mode == self.MOVING_TEXT_MODE:
+            send("Left", "!")
+        elif self.cursor_mode == self.SELECTING_TEXT_MODE:
+            send("Left", "!+")
+        elif self.cursor_mode == self.SELECTING_KUKEI_TEXT_MODE:
+            send("Left", "!+")
+    def semicolon(self):
+        if self.cursor_mode == self.MOVING_TEXT_MODE:
+            send("Right", "!")
+        elif self.cursor_mode == self.SELECTING_TEXT_MODE:
+            send("Right", "!+")
+        elif self.cursor_mode == self.SELECTING_KUKEI_TEXT_MODE:
+            send("Right", "!+")
     def s(self):
         if self.cursor_mode == self.MOVING_TEXT_MODE:
             send("Home")
@@ -154,9 +146,6 @@ class AppKeymap(base.AppKeymap):
     def r(self):
         send("F2", "#")
     def t(self):
-        if self.extend_modifire:
-            send("U", "#")
-        else:
         send("D", "#")
         # send("T", "#!") #翻訳機能実行
 
