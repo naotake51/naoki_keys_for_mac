@@ -187,15 +187,9 @@ class SubAppKeymap(base.SubAppKeymap):
     def c(self):
         send("K", "#")
         send("Left")
-    def v(self):
-        send("K", "#")
-        send("Left")
-    def x(self):
-        send("K", "#")
-        send("W", "#")
-    def z(self):
-        send("K", "#")
-        send("W", "#")
+    # def v(self):
+    # def x(self):
+    # def z(self):
 
     # 前を消す、後ろを消す
     # def g(self):
@@ -288,7 +282,8 @@ class SubNomalKeymap(base.SubNomalKeymap):
 
     # 変更、一つ選択、グループ選択、グループ選択
     # def r(self):
-    # def t(self):
+    def t(self):
+        send("T", "!+")
     # def y(self):
     def u(self):
         global jumpy
