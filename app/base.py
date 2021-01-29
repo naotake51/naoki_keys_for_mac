@@ -193,3 +193,5 @@ class App():
         mapping["D-Z"] = self.put_z
 
         mapping["U-G"] = self.put_g_up
+
+keymaps = [NomalKeymap, SubNomalKeymap, AppKeymap, SubAppKeymap]

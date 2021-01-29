@@ -180,3 +180,5 @@ class App(base.App):
 
     def __init__(self):
         super().__init__("com.apple.finder", SubNomalKeymap, AppKeymap, SubAppKeymap)
+
+keymaps = [base.NomalKeymap, SubNomalKeymap, AppKeymap, SubAppKeymap]

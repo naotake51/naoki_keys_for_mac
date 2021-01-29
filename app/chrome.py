@@ -1,16 +1,19 @@
 from app import base
 from app.util import *
+import time
 
 # アドレスバー意外にフォーカスがある場合、appname = NoneになるのでVSCodeのキーバーインドが適用されてしまう。。。
 # 自前でアプリケーションの切り替えをハンドルする方法を調べ中
 # test.pyはうまくいかなかった。
 
 class AppKeymap(base.AppKeymap):
-    def init(self):
+    def __init__(self):
+        super().__init__()
         self.MOVING_TEXT_MODE = 0
         self.SELECTING_TEXT_MODE = 1
         self.cursor_mode = self.MOVING_TEXT_MODE
         # send("Esc") # Escをするとフルスクリーンビューを閉じてしまう
+        send("Esc") # vimium insertモードをキャンセル
 
     # 新規作成、削除
     # def n(self):
@@ -86,9 +89,9 @@ class AppKeymap(base.AppKeymap):
         self.cursor_mode = self.SELECTING_TEXT_MODE
 
 class SubAppKeymap(base.SubAppKeymap):
-    def init(self):
-        pass
-        # send("Esc") # Escをするとフルスクリーンビューを閉じてしまう
+    def __init__(self):
+        super().__init__()
+        send("Esc") # vimium insertモードをキャンセル
 
     # 新規作成、削除
     def n(self):
@@ -138,7 +141,14 @@ class SubAppKeymap(base.SubAppKeymap):
     # def y(self):
     # def u(self):
 
+class NomalKeymap(base.NomalKeymap):
+    def __init__(self):
+        super().__init__()
+
 class SubNomalKeymap(base.SubNomalKeymap):
+    def __init__(self):
+        super().__init__()
+
     # 新規作成、削除
     # def n(self):
     # def b(self):
@@ -151,7 +161,8 @@ class SubNomalKeymap(base.SubNomalKeymap):
 
     # 前を消す、後ろを消す
     # def g(self):
-    # def h(self):
+    def h(self):
+        send("Del")
 
     # 移動
     def i(self):
@@ -173,8 +184,12 @@ class SubNomalKeymap(base.SubNomalKeymap):
     # def m(self):
 
     # 探す
-    # def o(self):
-    # def p(self):
+    def o(self):
+        send("Esc")
+        send("O", "+") # vimium 新規タブ検索
+    def p(self):
+        send("Esc")
+        send("O") # vimium 検索
 
     # 調べる
     # def q(self):
@@ -182,8 +197,12 @@ class SubNomalKeymap(base.SubNomalKeymap):
     # 変更、一つ選択、グループ選択、グループ選択
     # def r(self):
     # def t(self):
-    # def y(self):
-    # def u(self):
+    def y(self):
+        send("Esc")
+        send("F", "+") # vimium 新規タブリンク表示
+    def u(self):
+        send("Esc")
+        send("F") # vimium リンク表示
 
     # 探す(試)
     def f(self):
@@ -193,4 +212,7 @@ class SubNomalKeymap(base.SubNomalKeymap):
 class App(base.App):
 
     def __init__(self):
-        super().__init__("com.google.Chrome", SubNomalKeymap, AppKeymap, SubAppKeymap)
+        # Chromeのツールバーあたりにフォーカスがあると有効だが、コンテンツページ部分にフォーカスがあるとWindow: Noneになってしまい、このキーマップが有効にならない
+        super().__init__("com.google.chrome", SubNomalKeymap, AppKeymap, SubAppKeymap)
+
+keymaps = [NomalKeymap, SubNomalKeymap, AppKeymap, SubAppKeymap]

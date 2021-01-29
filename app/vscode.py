@@ -2,7 +2,7 @@ from app import base
 from app.util import *
 import pyperclip
 import time
-
+import os
 jumpy = False
 
 class AppKeymap(base.AppKeymap):
@@ -120,14 +120,14 @@ class AppKeymap(base.AppKeymap):
         elif self.cursor_mode == self.SELECTING_TEXT_MODE:
             send("Home", "+")
         elif self.cursor_mode == self.SELECTING_KUKEI_TEXT_MODE:
-            send("Left", "+", num = 3)
+            send("Home", "+")
     def f(self):
         if self.cursor_mode == self.MOVING_TEXT_MODE:
             send("End")
         elif self.cursor_mode == self.SELECTING_TEXT_MODE:
             send("End", "+")
         elif self.cursor_mode == self.SELECTING_KUKEI_TEXT_MODE:
-            send("Right", "+", num = 3)
+            send("End", "+")
 
     # メモ
     def m(self):
@@ -152,8 +152,7 @@ class AppKeymap(base.AppKeymap):
 
     # 変更、一つ選択、グループ選択、グループ選択
     def r(self):
-        send("Z", "#")
-        send("Y", "#")
+        send("F2", "#")
     def t(self):
         if self.extend_modifire:
             send("U", "#")
@@ -307,3 +306,5 @@ class App(base.App):
 
     def __init__(self):
         super().__init__(None, SubNomalKeymap, AppKeymap, SubAppKeymap)
+
+keymaps = [base.NomalKeymap, SubNomalKeymap, AppKeymap, SubAppKeymap]
