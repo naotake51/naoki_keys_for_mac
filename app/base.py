@@ -34,6 +34,16 @@ class Keymap():
     def y(self):pass
     def z(self):pass
     def semicolon(self):pass
+    def number_0(self): pass
+    def number_1(self): pass
+    def number_2(self): pass
+    def number_3(self): pass
+    def number_4(self): pass
+    def number_5(self): pass
+    def number_6(self): pass
+    def number_7(self): pass
+    def number_8(self): pass
+    def number_9(self): pass
 class NomalKeymap(Keymap):
     def a(self):send("A")
     def b(self):send("B")
@@ -62,6 +72,16 @@ class NomalKeymap(Keymap):
     def y(self):send("Y")
     def z(self):send("Z")
     def semicolon(self):send(";")
+    def number_0(self): send("0")
+    def number_1(self): send("1")
+    def number_2(self): send("2")
+    def number_3(self): send("3")
+    def number_4(self): send("4")
+    def number_5(self): send("5")
+    def number_6(self): send("6")
+    def number_7(self): send("7")
+    def number_8(self): send("8")
+    def number_9(self): send("9")
 class SubNomalKeymap(Keymap):
     def __init__(self):
         super().__init__()

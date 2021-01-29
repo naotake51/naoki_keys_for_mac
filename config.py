@@ -64,6 +64,17 @@ class Main:
         mapping["D-104"] = self.down_app_mode_key
         mapping["U-104"] = self.up_app_mode_key
 
+        mapping["D-0"] = self.create_action("number_0")
+        mapping["D-1"] = self.create_action("number_1")
+        mapping["D-2"] = self.create_action("number_2")
+        mapping["D-3"] = self.create_action("number_3")
+        mapping["D-4"] = self.create_action("number_4")
+        mapping["D-5"] = self.create_action("number_5")
+        mapping["D-6"] = self.create_action("number_6")
+        mapping["D-7"] = self.create_action("number_7")
+        mapping["D-8"] = self.create_action("number_8")
+        mapping["D-9"] = self.create_action("number_9")
+
         mapping["D-A"] = self.create_action("a")
         mapping["D-B"] = self.create_action("b")
         mapping["D-C"] = self.create_action("c")

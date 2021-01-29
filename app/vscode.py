@@ -147,7 +147,6 @@ class AppKeymap(base.AppKeymap):
         send("F2", "#")
     def t(self):
         send("D", "#")
-        # send("T", "#!") #翻訳機能実行
 
     def y(self):
         send("Esc")
@@ -155,6 +154,9 @@ class AppKeymap(base.AppKeymap):
     def u(self):
         send("Esc")
         self.cursor_mode = self.SELECTING_TEXT_MODE
+
+    def number_1(self):
+        send("F12")
 
 class SubAppKeymap(base.SubAppKeymap):
     def __init__(self):
@@ -272,7 +274,13 @@ class SubNomalKeymap(base.SubNomalKeymap):
     # 変更、一つ選択、グループ選択、グループ選択
     # def r(self):
     def t(self):
-        send("T", "!+")
+        # 単語を翻訳する
+        # 文の翻訳もしたかったが、文だと翻訳文がちゃんと見れなかったので単語のみに限定した。
+        send("D", "#") # 単語選択
+        # VSCode Google Translate Extention
+        # https://marketplace.visualstudio.com/items?itemName=hancel.google-translate
+        # キーマップと翻訳言語を設定で変更
+        send("T", "!+") # 翻訳
     # def y(self):
     def u(self):
         global jumpy
