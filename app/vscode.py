@@ -158,6 +158,9 @@ class AppKeymap(base.AppKeymap):
     def number_1(self):
         send("F12")
 
+    def number_2(self):
+        send("F12", "+")
+
 class SubAppKeymap(base.SubAppKeymap):
     def __init__(self):
         super().__init__()
